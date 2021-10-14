@@ -1,0 +1,9 @@
+dart pub run build_runner watch
+
+
+docker-compose up
+
+Remova o diretório do repositório remoto após adicioná-los a .gitignore
+git rm -r --cached node_modules
+git commit -m 'Remove the now ignored directory node_modules'
+git push origin master
