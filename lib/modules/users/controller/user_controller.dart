@@ -48,7 +48,10 @@ class UserController {
   @Route.post('/auth')
   Future<Response> login(Request request) async {
     try {
-      final requestMap = jsonDecode(await request.readAsString());
+
+      final rq = await request.readAsString();
+
+      final requestMap = jsonDecode(rq);
 
       final viewModel = UserLoginViewModelMapper(requestMap).mapper();
 
@@ -56,13 +59,13 @@ class UserController {
 
       // O mapeio poderia ter sido feito assim, porém
       // a senha não deve voltar na resposta
-      return Response.ok(user.toJson());
+      // return Response.ok(user.toJson());
       // Assim o mapeio foi feito manualmente
-      // return Response.ok({
-      //   'id': user.id,
-      //   'name': user.name,
-      //   'email': user.email,
-      // });
+      return Response.ok(jsonEncode({
+        'id': user.id,
+        'name': user.name,
+        'email': user.email,
+      }));
 
 
     } on UserNotFoundException catch (e) {
