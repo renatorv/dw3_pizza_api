@@ -39,5 +39,3 @@ Middleware defaultResponseontentType(String contentType) {
     };
   };
 }
-
-// aula 1 54 min

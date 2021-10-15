@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:dw3_pizza_api/application/exceptions/user_not_found_exception.dart';
+import 'package:dw3_pizza_api/modules/users/controller/mappers/user_login_view_model_mapper.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
@@ -38,6 +40,38 @@ class UserController {
           {
             'message': 'Erro ao registrar usuário!',
           },
+        ),
+      );
+    }
+  }
+
+  @Route.post('/auth')
+  Future<Response> login(Request request) async {
+    try {
+      final requestMap = jsonDecode(await request.readAsString());
+
+      final viewModel = UserLoginViewModelMapper(requestMap).mapper();
+
+      final user = await _service.login(viewModel);
+
+      // O mapeio poderia ter sido feito assim, porém
+      // a senha não deve voltar na resposta
+      return Response.ok(user.toJson());
+      // Assim o mapeio foi feito manualmente
+      // return Response.ok({
+      //   'id': user.id,
+      //   'name': user.name,
+      //   'email': user.email,
+      // });
+
+
+    } on UserNotFoundException catch (e) {
+      print(e);
+      return Response.forbidden('');
+    } catch (e) {
+      return Response.internalServerError(
+        body: jsonEncode(
+          {'message': 'Erro interno.'},
         ),
       );
     }
