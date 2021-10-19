@@ -7,7 +7,8 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../modules/users/controller/user_controller.dart' as _i10;
+import '../../modules/menu/controller/menu_controller.dart' as _i10;
+import '../../modules/users/controller/user_controller.dart' as _i11;
 import '../../repositories/user/i_user_repository.dart' as _i6;
 import '../../repositories/user/user_repository.dart' as _i7;
 import '../../services/user/i_user_service.dart' as _i8;
@@ -28,7 +29,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i7.UserRepository(get<_i3.IDatabaseConnection>()));
   gh.lazySingleton<_i8.IUserService>(
       () => _i9.UserService(get<_i6.IUserRepository>()));
-  gh.factory<_i10.UserController>(
-      () => _i10.UserController(get<_i8.IUserService>()));
+  gh.factory<_i10.MenuController>(() => _i10.MenuController());
+  gh.factory<_i11.UserController>(
+      () => _i11.UserController(get<_i8.IUserService>()));
   return get;
 }

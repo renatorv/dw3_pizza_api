@@ -48,7 +48,6 @@ class UserController {
   @Route.post('/auth')
   Future<Response> login(Request request) async {
     try {
-
       final rq = await request.readAsString();
 
       final requestMap = jsonDecode(rq);
@@ -61,13 +60,15 @@ class UserController {
       // a senha não deve voltar na resposta
       // return Response.ok(user.toJson());
       // Assim o mapeio foi feito manualmente
-      return Response.ok(jsonEncode({
-        'id': user.id,
-        'name': user.name,
-        'email': user.email,
-      }));
-
-
+      return Response.ok(
+        jsonEncode(
+          {
+            'id': user.id,
+            'name': user.name,
+            'email': user.email,
+          },
+        ),
+      );
     } on UserNotFoundException catch (e) {
       print(e);
       return Response.forbidden('');
