@@ -2,21 +2,21 @@ import 'dart:convert';
 import 'package:dw3_pizza_api/entities/menu_item.dart';
 
 class Menu {
-  int id;
-  String name;
-  List<MenuItem> items;
+  int? id;
+  String? name;
+  List<MenuItem>? items;
 
   Menu({
-    required this.id,
-    required this.name,
-    required this.items,
+    this.id,
+    this.name,
+    this.items,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'name': name,
-      'items': items.map((x) => x.toMap()).toList(),
+      'items': items?.map((x) => x.toMap()).toList(),
     };
   }
 
