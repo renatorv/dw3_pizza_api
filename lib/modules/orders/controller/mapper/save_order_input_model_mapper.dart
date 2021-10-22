@@ -12,7 +12,8 @@ class SaveOrderInputModelMapper {
       userId: _data['userId'],
       address: _data['address'],
       paymentType: _data['paymentType'],
-      itemsId: List<int>.from(_data['itemsId']),
+      // o array _data['itemsId'] é uma lista de dynamic por isso é necessária a conversão abaixo
+      itemsId: List<int>.from(_data['itemsId']), 
     );
   }
 }
