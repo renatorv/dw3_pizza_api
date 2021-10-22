@@ -15,3 +15,15 @@ Content-Type:application/json
 }
 
 http://localhost:8080/menu/ => get
+
+
+http://localhost:8080/order/ => post
+{
+  "userId":"1",  
+  "address":"Rua x",  
+  "paymentType":"credito",  
+  "itemsId":"[1,2,3]",  
+}
+
+
+http://localhost:8080/order/user/:userId => get

@@ -21,7 +21,7 @@ class OrdersController {
 
       await _service.saveOrder(inputModel);
 
-      return Response.ok(jsonEncode(''));
+      return Response.ok('');
     } catch (e) {
       print(e);
       return Response.internalServerError(
@@ -29,8 +29,14 @@ class OrdersController {
     }
   }
 
+  @Route.get('/user/<userid>')
+  Future<Response> find(Request request, String userid) async {
+    final orders = await _service.findMyOrders(int.parse(userid));
+
+    final orderResponse = orders.map((o) => o.toMap()).toList();
+
+    return Response.ok(jsonEncode(orderResponse));
+  }
+
   Router get router => _$OrdersControllerRouter(this);
 }
-
-
-30 min
