@@ -27,7 +27,7 @@ class OrdersRepository implements IOrdersRepository {
           final resultOrder = await conn.query(
             '''
           insert into pedido(
-            id_pedido,
+            id_usuario,
             forma_pagamento,
             endereco_entrega
           ) values (
@@ -43,6 +43,7 @@ class OrdersRepository implements IOrdersRepository {
             ],
           );
 
+          // aqui é passado o id que foi cadastrado no BD
           final orderId = resultOrder.insertId;
 
           await conn.queryMulti('''
@@ -113,6 +114,3 @@ class OrdersRepository implements IOrdersRepository {
     }
   }
 }
-
-
-finalizado o back-end, porem nao validado na versao 2 do flutter.

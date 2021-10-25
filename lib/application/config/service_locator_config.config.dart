@@ -41,7 +41,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i10.IOrdersRepository>(
       () => _i11.OrdersRepository(get<_i3.IDatabaseConnection>()));
   gh.lazySingleton<_i12.IOrdersService>(
-      () => _i13.OrdersService(get<_i11.OrdersRepository>()));
+      () => _i13.OrdersService(get<_i10.IOrdersRepository>()));
   gh.lazySingleton<_i14.IUserRepository>(
       () => _i15.UserRepository(get<_i3.IDatabaseConnection>()));
   gh.lazySingleton<_i16.IUserService>(
@@ -49,7 +49,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i18.MenuController>(
       () => _i18.MenuController(get<_i8.IMenuService>()));
   gh.factory<_i19.OrdersController>(
-      () => _i19.OrdersController(get<_i13.OrdersService>()));
+      () => _i19.OrdersController(get<_i12.IOrdersService>()));
   gh.factory<_i20.UserController>(
       () => _i20.UserController(get<_i16.IUserService>()));
   return get;

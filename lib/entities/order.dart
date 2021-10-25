@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:dw3_pizza_api/entities/order_item.dart';
@@ -8,7 +7,7 @@ class Order {
   final String paymentType;
   final String address;
   final List<OrderItem> items;
-  
+
   Order({
     required this.id,
     required this.paymentType,
@@ -21,7 +20,7 @@ class Order {
       'id': id,
       'paymentType': paymentType,
       'address': address,
-      'items': items?.map((x) => x.toMap())?.toList(),
+      'items': items.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -30,7 +29,8 @@ class Order {
       id: map['id'],
       paymentType: map['paymentType'],
       address: map['address'],
-      items: List<OrderItem>.from(map['items']?.map((x) => OrderItem.fromMap(x))),
+      items:
+          List<OrderItem>.from(map['items']?.map((x) => OrderItem.fromMap(x))),
     );
   }
 

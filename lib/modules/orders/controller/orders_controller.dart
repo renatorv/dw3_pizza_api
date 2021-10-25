@@ -21,7 +21,7 @@ class OrdersController {
 
       await _service.saveOrder(inputModel);
 
-      return Response.ok('');
+      return Response.ok(jsonEncode(''));
     } catch (e) {
       print(e);
       return Response.internalServerError(
